@@ -1,0 +1,120 @@
+<!Doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+
+  <title>belka-obciążenia-wyniki </title>
+  <meta name="description" content="The HTML5">
+  <meta name="Maciej_Marosz" content="IT POL">
+
+  <link rel="stylesheet" href="belka.css">
+
+  <link rel="shortcut icon" href="#">
+  <script src = "jquery-3.4.1.min.js"></script>
+  <script src="scripts/require.js"></script>
+
+
+<!-- <script src="plik.js"></script> -->
+</head>
+
+<body style="background-color:white;color:black;">
+<div id="wyniki">W Y N I K I</div>
+  <!-- <div id="wyniki_2"></div>  -->
+  <div id="wyniki_3" style="font-size:34"></div>
+  <!--<a href="menu.html">Powrót do menu</a> -->
+<br>
+<div class="wrapper">
+  <a href="menu.html"><span>MENU</span></a>
+  <br>
+  <a href="belka-1.01.html"><span>Wróć do obliczeń wytrzymałości belki</a>
+  </div>
+
+
+  <br>
+
+
+<script type="text/javascript" charset="utf-8" >
+var txt = '';
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function(){
+  if(xmlhttp.status == 200 && xmlhttp.readyState == 4){
+    txt = xmlhttp.responseText;
+  }
+};
+xmlhttp.open("GET","./input.txt",true);
+xmlhttp.send();
+console.log('txt     '+txt);
+console.log('koniec prostego kodu');
+var hereDisp;
+var myInit = {method: 'GET',
+									headers: { 'Content-Type': 'application/json'},
+									mode: 'cors',
+									cache: 'default' };
+		let myRequest = new Request ("./belka.json", myInit);
+		fetch (myRequest).then (function(resp) {
+																	return resp.json ();
+																	}).then (function (datax) {
+
+																	console.log( "to masz teraz jsona \n "+JSON.stringify(datax));
+                                var s = datax.mi;
+
+                                var hBelki=getCookie('b');
+                                var szBelki = getCookie('d');
+                                var otulina = getCookie('otulina');
+                                var mz = getCookie('mz');
+                                var blad = getCookie('blad');
+                                var fi = getCookie('fi');
+                                var fck=getCookie('fck');
+                                var mi = getCookie('mi');
+                                var As1= getCookie('As1');
+
+                                console.log("szbelki  "+szBelki);
+
+                                var wynikiS='';
+
+                                wynikS='Parametry:'+'<br>'
+                                +'hBelki='+hBelki+'<br>'
+                                +'szBelki='+szBelki+'<br>'
+                                +'otulina='+otulina+'<br>'
+								                +'mz='+mz+'<br>'
+								                +'blad='+blad+'<br>'
+                                +'fi='+fi+'<br><br>'
+                                +'Obliczono:'+'<br>'
+                                +'mi='+mi+'<br>'
+                                +'As1='+As1+'<br>';
+                                $("#wyniki_3").html(wynikS);
+
+                                });
+
+
+
+								function setCookie(cname, cvalue, exdays) {
+									var d = new Date();
+									d.setTime(d.getTime() + (exdays*24*60*60*1000));
+									var expires = "expires="+ d.toUTCString();
+									document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+								}
+
+                function getCookie(cname) {
+                var name = cname + "=";
+                var decodedCookie = decodeURIComponent(document.cookie);
+                var ca = decodedCookie.split(';');
+                for(var i = 0; i <ca.length; i++) {
+                  var c = ca[i];
+                  while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                  }
+                  if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                  }
+                }
+                return "";
+              }
+
+
+
+
+</script>
+
+</body>
+</html>

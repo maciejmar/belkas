@@ -1,0 +1,84 @@
+body {
+background-image: linear-gradient(90deg, darkblue 0%, cyan 100%);
+color: #e6b800;
+font-size:14px;
+}
+input {
+	background-color:#e6b800;
+	border-color:darkKhaki;
+	font-size:34px;
+	margin-bottom:3px;
+	display:in-block;
+
+}
+input[type=radio] {
+
+   cursor: pointer;
+    border-radius:8px;
+	box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px ;
+	display:in-block;
+	  -ms-transform: scale(1.5); /* IE 9 */
+    -webkit-transform: scale(1.5); /* Chrome, Safari, Opera */
+    transform: scale(1.9);
+}
+#a1{
+	background-color: brown;
+	color:orange;
+}
+div.comments {
+	width:520x;
+	height:50px;
+	background-image: linear-gradient(90deg, red 0%, orange 100%);
+}
+#wyniki_1 {
+	color: grey;
+	font-family:"Verdana";
+	border-style:1px dashed black;
+}
+#wyniki_2 {
+	height:130px;
+	weight:130px;
+}
+#wyniki {
+	background-color:white;
+	color:black;
+	font-family:"Verdana";
+	font-size:23px;
+	height:100px;
+	width:820px;
+	padding-left:10px;
+	border:2px dashed black;
+
+}
+#wyniki_3 {
+	background-color:white;
+	color:black;
+	font-family:"Verdana";
+	font-size:24px;
+	 height:400px;
+	 width:820px;
+	 padding-left:10px;
+	 padding-top:5px;
+	 border: 2px dashed black;
+}
+
+.button1 {
+  background-color: white;
+  color: black;
+  border:2px dashed black;
+}
+
+.button1:hover {
+  background-color: #4CAF50;
+  color: yellow;
+}
+
+table {
+	margin: 0 auto;
+	font-size: large;
+	border: 1px solid brown;
+}
+textarea {
+width:80%;
+height:500px;
+}

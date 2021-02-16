@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="PL">
+<head>
+  <meta charset="utf-8">
+  <title>rysy-1-wyniki</title>
+  <meta name="description" content="The HTML5">
+  <meta name="Maciej_Marosz" content="IT POL">
+
+<link rel="stylesheet" href="belka.css">
+<link rel="shortcut icon" href="#">
+<script src='jquery-3.4.1.min.js'></script>
+
+</head>
+    <body style="background-color:white;color:black;">
+        <div id="wyniki">W Y N I K I</div>
+
+        <div id="wyniki_3" style="font-size:34"></div>
+        <div class="wrapper">
+          <br>
+           <a href="menu.html"><span>MENU</span></a>
+
+      </div>
+        <script type="text/javascript" charset="utf-8">
+
+          var ksisN = getCookie("ksisN");
+          var Fi = getCookie("Fi");
+          var ropef = getCookie("ropef");
+             var wynikS='';
+             wynikS='Parametry:'+'<br>'
+                     +'ksisN='+ksisN+'<br>'
+                     +'Fi='+Fi+'<br>'
+                     +'ropef='+ropef+'<br>';
+             $("#wyniki_3").html(wynikS);
+             console.log("ksisN=",ksisN);
+             console.log("rubbish");
+
+              function getCookie(cname) {
+              var name = cname + "=";
+              var decodedCookie = decodeURIComponent(document.cookie);
+              var ca = decodedCookie.split(';');
+              for(var i = 0; i <ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                  c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                  return c.substring(name.length, c.length);
+                }
+              }
+                return "";
+              }
+
+
+        </script>
+    </body>
+
+</html>

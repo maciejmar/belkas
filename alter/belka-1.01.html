@@ -1,0 +1,361 @@
+<!Doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+
+  <title>belka-obciążenia </title>
+  <meta name="description" content="The HTML5">
+  <meta name="Maciej_Marosz" content="IT POL">
+
+  <link rel="stylesheet" href="belka.css">
+  <link rel="shortcut icon" href="#">
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  <script src="scripts/require.js"></script>
+  <script src = "jquery-3.4.1.min.js"></script>
+<!-- <script src="plik.js"></script> -->
+
+</head>
+
+<body>
+<!--//<?php phpinfo(); ?>
+//<?php echo '<p>Hello World</p>' ;?>
+-->
+<div id = "a2">Obliczanie  belki żelbetowej</div>
+<br>
+<div class="comments" >podaj dane</div>
+<br>
+<div id="entities" >
+	<div class="ent"> hbelki [mm]:  <div>
+	<div class="ent"> szer-belki [m]:  </div>
+	<div class="ent"> otulina [mm]:   </div>
+	<div class="ent"> błąd [mm]:  </div>
+	<div class="ent"> fi [mm]:   </div>
+	<div class="ent"> moment zginający[MNm]   </div>
+</div>
+<div style="clear:both;"></div>
+<div id="form1" >
+<form id="formula" >
+hbelki [mm]:  &nbsp &nbsp <input type="text" name="hbelki" id="hbelki"><br>
+szer-belki [m]: &nbsp <input type="text" name="szbelki" id="szbelki"><br>
+otulina [mm]:   &nbsp <input type="text" name="otulina" id="otulina"><br>
+błąd [mm]: &nbsp &nbsp &nbsp <input type="text" name="blad" id="blad"><br>
+fi [mm]: &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp <input type ="text" name="fi" id="fi"><br>
+moment zginający [MNm]: <input type = "text" name = "mz" id="mz"><br>
+ <input type="button" onclick="myFunction()" value = "OBLICZ">
+</form>
+</div>
+
+
+<div id="form2">Podaj klasę betonu wg Eurokodu 2: <br>
+	 <form id="e2">
+  <input type="radio" id="0" name="klbetonu" value="C12/15">
+  <label for="C12/15">C12/15</label><br>
+  <input type="radio" id="1" name="klbetonu" value="C16/20">
+  <label for="C16/20">C16/20</label><br>
+  <input type="radio" id="2" name="klbetonu" value="C20/25">
+  <label for="C20/25">C20/25</label><br>
+    <input type="radio" id="3" name="klbetonu" value="C25/30">
+  <label for="C25/30">C25/30</label><br>
+    <input type="radio" id="4" name="klbetonu" value="C30/37">
+  <label for="C30/37">C30/37</label><br>
+    <input type="radio" id="5" name="klbetonu" value="C35/45">
+  <label for="C35/45">C35/45</label> <br>
+  <input type="radio" id="6" name="klbetonu" value="C40/50">
+  <label for="C40/50">C40/50</label><br>
+    <input type="radio" id="7" name="klbetonu" value="C45/55">
+	  <label for="C45/55">C45/55</label><br>
+   <input type="radio" id="8" name="klbetonu" value="C50/60">
+	  <label for="C50/60">C50/60</label><br>
+	   <input type="radio" id="9" name="klbetonu" value="C55/65">
+	  <label for="C55/65">C55/65</label><br>
+	   <input type="radio" id="10" name="klbetonu" value="C60/70">
+	  <label for="C60/70">C60/70</label><br><br>
+</form>
+</div>
+<div id="form3">
+	<form id= "klbetonu">
+	  <input type="radio" id="0" name="cechab" value="Wytrzymałość gwarantowana fG c,cube">
+	  <label for="klb2">Wytrzymałość gwarantowana fG c,cube</label><br>
+	   <input type="radio" id="1" name="cechab" value="Wytrzymałość charakterystyczna fck">
+	  <label for="klb3">Wytrzymałość charakterystyczna fck</label><br>
+	   <input type="radio" id="2" name="cechab" value="Wytrzymałość obliczeniowa fcd(beton zbrojony)">
+	  <label for="klb4">Wytrzymałość obliczeniowa fcd(beton zbrojony)</label><br>
+	  <input type="radio" id="3" name="cechab" value="Wytrzymałość obliczeniowa f*cd (beton niezbrojony)">
+	  <label for="klb5">Wytrzymałość obliczeniowa f*cd (beton niezbrojony)</label><br><br>
+</form>
+</div>
+	<form id= "klStali">
+	  <input type="radio" id="0" name="klS" value="St0S0-b">
+	  <label for="St0S0-b">St0S0-b</label><br>
+	   <input type="radio" id="1" name="klS" value="St3SX-b">
+	  <label for="St3SX-b">St3SX-b</label><br>
+	   <input type="radio" id="2" name="klS" value="St3SY-b">
+	  <label for="St3SY-b">St3SY-b</label><br>
+	  <input type="radio" id="3" name="klS" value="St3S-b">
+	  <label for="St3S-b">St3S-b</label><br>
+	  	  <input type="radio" id="4" name="klS" value="PB 240">
+	  <label for="PB 240">PB 240</label><br>
+	  	  <input type="radio" id="5" name="klS" value="St50B'">
+	  <label for="St50B">St50B</label><br>
+	  	  <input type="radio" id="6" name="klS" value="18G2-b">
+	  <label for="18G2-b">18G2-b</label><br>
+	  	  <input type="radio" id="7" name="klS" value="20G2Y-b">
+	  <label for="20G2Y-b">20G2Y-b</label><br>
+	   <input type="radio" id="8" name="klS" value="25G2S">
+	  <label for="25G2S">25G2S</label><br>
+	   <input type="radio" id="9" name="klS" value="35G2Y">
+	  <label for="35G2Y">35G2Y</label><br>
+	   <input type="radio" id="10" name="klS" value="20G2Y-b">
+	  <label for="20G2Y-b">20G2Y-b</label><br>
+	   <input type="radio" id="11" name="klS" value="34GS">
+	  <label for="34GS">34GS</label><br>
+	    <input type="radio" id="12" name="klS" value="RB400">
+	  <label for="RB400">RB400</label><br>
+	    <input type="radio" id="RB400W" name="klS" value="RB400W">
+	  <label for="RB400W">RB400W</label><br>
+	    <input type="radio" id="13" name="klS" value="20G2VY-b">
+	  <label for="20G2VY-b">20G2VY-b</label><br>
+	    <input type="radio" id="14" name="klS" value="RB500">
+	  <label for="klb5">RB500</label><br>
+	   <input type="radio" id="15" name="klS" value="RB500 W">
+	  <label for="RB500 W">RB500 W</label><br><br>
+
+
+</form>
+
+
+</div>
+
+<div id="wyniki_1">
+<a href="belka-wyniki.html">Tu wyniki</a>
+ <!-- <button type="button" class="button1" onclick="location.href = "file:///home/maciej/javascript/js1/belka/belka-wyniki.html">Drukuj wyniki</button>
+ <button onclick="window.location.href='belka-wyniki.html'>CLICK ME</button>  -->
+ </div>
+<script type="text/javascript" charset="utf-8">
+function myFunction() {
+
+
+	document.forms['formula'].submit();
+	document.forms['e2'].submit();
+	//document.forms['pn99'].submit();
+ document.getElementById("formula").submit();
+ const form = document.querySelector('formula');
+const data = Object.fromEntries(new FormData(formula).entries());
+const data1=Object.fromEntries(new FormData(e2).entries());
+//const data2=Object.fromEntries(new FormData(pn99).entries());
+ console.log('data='+ data.hbelki, data.otulina, data.blad, data.fi);
+ var d = (parseFloat(data.hbelki) -parseFloat(data.otulina)- parseFloat(data.blad)-parseFloat(data.fi*0.5));
+ console.log('d='+ d);
+ var fcd=13.0;
+ var mi= (parseFloat(data.mz))/(1* 0.001*(d*d) *0.85*fcd);
+ console.log("mi="+mi);
+
+ var klbetC=["C12/15", "C16/20", "C20/25", "C25/30", "C30/37", "C35/45", "C40/50", "C45/55", "C50/60", "C55/65", "C60/70"]
+ var klbet = [];
+klbet[0]=[];
+klbet[1]=[];
+klbet[2]=[];
+klbet[3]=[];
+//klbet[4]=[];
+//klbet[0]='B15','B20','B25','B30','B37','B45','B50','B55','B60','B65','B70';
+klbet[0]=['15','20','25','30','37','45','50','55','60','65', '70'];
+klbet[1]=['12', '16', '20', '25', '30', '35', '40', '45', '50', '55', '60'];
+klbet[2]= ['8.0', '10.6', '13.3', '16.7', '20.0', '23.3', '26.7', '30.0', '33.3', '36.7', '40.0'];
+klbet[3]=['6.7', '8.9', '11.1','13.9','16.7','19.4','22.2','25.0','27.8','30.6','33.3'];
+
+var fyd2 = [190,210, 310, 350, 420, 435];
+var milim = [0.428, 0.423, 0.399, 0.390, 0.374, 0.371];
+var ksilim = [0.787, 0.769,0.693,0.667,0.625,0.617];
+var omega;
+//= 0.973 - Math.sqrt(0.947-1.95*mi);
+
+var gStali =["St0S0-b", "St3SX-b", "St3SY-b", "St3S-b", "PB 240", "St50B", "18G2-b", "20G2Y-b", "25G2S", "35G2Y", "34GS", "RB400", "RB400W",
+ "20G2VY-b", "RB500", "RB500 W"];
+var fyk=[220, 240, 240, 240, 240, 355, 355, 355, 395, 410, 410, 400, 400, 490, 500, 500];
+var fyd = [190, 210, 210, 210, 210, 310, 310, 310, 350, 350, 350, 350, 350, 420, 420, 420];
+
+var e2value = document.querySelector('input[name="klbetonu"]:checked').value;
+var klStali = document.querySelector('input[name="klS"]:checked').value;
+var cechaB = document.querySelector('input[name="cechab"]:checked').value;
+console.log ('e2value - '+e2value);
+var rBet = ['Wytrzymałość gwarantowana fG c,cube', 'Wytrzymałość charakterystyczna fck',
+'Wytrzymałość obliczeniowa fcd(beton zbrojony)', 'Wytrzymałość obliczeniowa f*cd (beton niezbrojony)'];
+
+console.log ('klstali   tu jest   ='+ klStali.toString());
+var a='astanavista';
+console.log ('hello   '+a.toString());
+console.log('data1 e2 = '+e2value);
+console.log("klS"+klStali+"  00000");
+console.log('cechaB = '+cechaB);
+function findIndex (value, tab){
+     console.log ("value=     "+value+"   tab= "+tab);
+		for (i=0;i<tab.length;i++) {
+		if( value.toString().localeCompare(tab[i].toString()) === 0) return i;
+		}
+		return -1;
+}
+console.log('FindIndex='+ findIndex(e2value, klbetC));
+console.log('Stal = '+ findIndex (klStali, gStali));
+console.log('Cecha ='+ findIndex (cechaB, rBet));
+
+ console.log('data='+ data.hbelki, data.otulina, data.blad, data.fi);
+ var d = (parseFloat(data.hbelki) -parseFloat(data.otulina)- parseFloat(data.blad)-parseFloat(data.fi*0.5));
+ console.log('d='+ d);
+ var fcd=klbet[i][findIndex(e2value, klbetC)];
+ console.log('fcd = '+ fcd);
+ console.log ('mi params   mz = '+parseFloat(data.mz)+ 'fcd=' +fcd );
+ d=d*0.001;
+ var mi= (parseFloat(data.mz))/(  d*d *0.85*fcd);
+ console.log("mi="+mi);
+ console.log('klbet length - '+klbet[0].length);
+ console.log ('gStali długość - '+gStali.length);
+ console.log ('findindex '+findIndex (klStali, gStali) );
+ var Fyd = fyd[findIndex (klStali, gStali)] ;
+var Fyk = fyk[findIndex (klStali, gStali)];
+ console.log('Fyd ->  '+Fyd);
+ console.log('fyd2  '+ fyd2);
+ console.log('fyd2 length  '+ fyd2.length);
+ console.log ('findIndex od 210  - > '+ findIndex(210, fyd2)  );
+
+console.log("Fyd i Fyk   "+Fyd+"  "+Fyk);
+if ( 0<findIndex(Fyd, fyd2) && findIndex(Fyd, fyd2) <5 ) console.log ('in range = '+ findIndex(Fyd, fyd2) );
+else console.log ('out of range '+findIndex(Fyd, fyd2));
+var ksi_lim = ksilim[findIndex(Fyd, fyd2)];
+var mi_lim = milim[ findIndex(Fyd, fyd2)];
+console.log("ksilim i milim "+ ksi_lim+'  '+mi_lim);
+if (mi<=mi_lim)  {
+          omega = 0.973-Math.sqrt( (0.947-1.95*mi));
+		  console.log("omega = "+omega);
+		  }
+else {
+omega = ((1-ksi_lim)/ksi_lim) * [(0.973-Math.pow(Math.sqrt(0.947-1.95*mi),2))/(Math.sqrt(0.947-1.95*mi) - 0.164)];
+console.log (" Mi > Mi-limes !!!!!");
+console.log ('Omega = ' + omega);
+}
+console.log( "params do as1 = " +omega +"   sz belki  " +d+"    " + Fyd+ "    " +fcd);
+var As1= (omega *d) * ((0.85*fcd)/Fyd);
+console.log("As1min params    "+parseFloat(data.szbelki)+ "    " +d+"  "+Fyk);
+var As1min = (0.6*parseFloat(data.szbelki)*d )/Fyk;
+//console.log('as1 params\ :  '+parseFloat(data.szbelki)+'  '+ d+ '  ' + Fyd+ '   '+ fcd+'    '+ omega) ;
+console.log("Asmin2 params  szbelki ="+parseFloat(data.szbelki)*100+" d*100    "+d*100);
+As1min2=0.0015*parseFloat(data.szbelki)*100*d*100;
+As1min2=As1min2*0.0001;
+console.log('As1='+As1+'   As1min= '+As1min+'   As1min2='+As1min2);
+var max = Math.max(As1, As1min, As1min2);
+console.log("Wynik - As1 = "+ max+ " [m]");
+//here ends code
+
+ var data11=document.forms["formula"]["hbelki"].value;
+  console.log("out of formular after form   "+"hbelki z getelem="+data11);
+
+
+ console.log("HERE I AM!");
+
+
+
+
+      let dataJo2 = {"hBelki":data.hbelki, "szBelki":data.szbelki,"otulina":data.otulina, "fi":data.fi, "blad":data.blad, "mi":mi, "As1":As1};
+      let dataJo3=JSON.stringify(dataJo2);
+
+        // This variable stores all the data.
+        let dataJo =
+            "\r hBelki: " + data.hbelki + " \r\n " +
+            "szBelki: " + data.szbelki + " \r\n " +
+            "otulina: " + data.otulina + " \r\n " +
+            "fi: " + data.fi + " \r\n " +
+            "blad: " + data.blad+ " \r\n " +
+			"mi: "+ mi +" \r\n " +
+			"As1: "+As1;
+			let dataJ = JSON.stringify(dataJo);
+
+        // Convert the text to BLOB.
+        const textToBLOB = new Blob([dataJo3], { type: 'application/json' });
+        const sFileName = 'belka.json';	   // The file to save the data.
+		console.log("File should be created");
+        let newLink = document.createElement("a");
+        newLink.download = sFileName;
+
+        if (window.webkitURL != null) {
+            newLink.href = window.webkitURL.createObjectURL(textToBLOB);
+        }
+        else {
+            newLink.href = window.URL.createObjectURL(textToBLOB);
+            newLink.style.display = "none";
+            document.body.appendChild(newLink);
+        }
+
+        newLink.click();
+		/*
+		async function getFile() {
+		let response = await fetch ('http: //localhost:3000/belka.json');
+		let dataxx = await response.json();
+		console.log (' tu dane twoje o '/+dataxx);
+		}
+		getFile();
+
+		var myInit = {method: 'GET',
+									headers: { 'Content-Type': 'application/json'},
+									mode: 'cors',
+									cache: 'default' };
+		let myRequest = new Request ("./belka.json", myInit);
+		fetch (myRequest).then (function(resp) {
+																	return resp.json ();
+																	}).then (function (datax) {
+																	console.log( "to masz teraz jsona "+datax);
+																	});
+
+		*/
+	/*
+		$(function () {
+				$.ajax({
+							type: 'GET',
+							url: 'belka.json',
+							dataType: 'json',
+							success: function (data) {
+							console.log('success is easy , here datas ', data);
+							}
+				});
+		});
+
+		*/
+
+		//require(['json!belka.json'], function (datax) {
+	//	console.log('here my data to show '+datax);
+		//});
+
+		//var json = require('./belka.json');
+		//fetch('./belka.json');
+		//fetch('./belka.json').then (results=>results.json()).then(console.log);
+		/*
+		require (['belka.json'],function (datax) {
+		console.log('display my datas '+ datax);
+		});  */
+	//$.getJSON("belka.json", function(json) {  });
+       //console.log(" here is my datas : " +json); // this will show the info it in firebug console
+
+ /*
+	function readTextFile(file, callback) {
+    var rawFile = new XMLHttpRequest();
+    rawFile.overrideMimeType("application/json");
+    rawFile.open("GET", file, true);
+    rawFile.onreadystatechange = function() {
+        if (rawFile.readyState === 4 && rawFile.status == "200") {
+            callback(rawFile.responseText);
+        }
+    }
+    rawFile.send(null);
+}
+
+
+//usage:
+readTextFile("belka.json", function(text){
+    var data = JSON.parse(text);
+    console.log(data);
+});
+*/
+  return true;
+}
+</script>
+
+</body>
+</html>

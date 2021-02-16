@@ -1,0 +1,39 @@
+<!Doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+
+  <title>reset placeholders </title>
+  <meta name="description" content="The HTML5">
+  <meta name="Maciej_Marosz" content="IT POL">
+
+  <link rel="stylesheet" href="belka.css">
+  <link rel="shortcut icon" href="#">
+  <script src = "jquery-3.4.1.min.js"></script>
+  <script src="scripts/require.js"></script>
+
+
+<!-- <script src="plik.js"></script> -->
+</head>
+
+<body style="background-color:white;color:black;">
+
+<script type="text/javascript"">
+	function deleteAllCookies() {
+    var cookies = document.cookie.split(";");
+
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    }
+	window.location.href = 'belka-1.01.html';
+}
+
+</script>
+<div id="wyniki_2">
+<button onclick="deleteAllCookies()">Placeholders was reset, go back to input datas</button>
+</div>
+</body>
+</html>

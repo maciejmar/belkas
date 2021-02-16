@@ -1,0 +1,114 @@
+<!Doctype html>
+    <html lang="pl">
+        <head>
+                <meta charset="utf-8">
+                <title>Wyniki-ugięcie </title>
+                <meta name="description" content="The HTML5">
+                <meta name="Maciej_Marosz" content="IT POL">
+                <link rel="stylesheet" href="belka.css">
+                <link rel="shortcut icon" href="#">
+                <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+                <script src="scripts/require.js"></script>
+                <script src = "jquery-3.4.1.min.js"></script>
+
+        </head>
+
+            <body>
+                    <div id="wyniki_3" style="font-size:34"></div>
+                    <br>
+                    <div class="wrapper">
+                       <a href="menu.html"><span>MENU</span></a>
+                    <br>
+                  </div>
+
+                    <script type="text/javascript">
+                    var as1, d,b,mz,fck, lf;
+                    mz=getCookie("mz");
+                    as1=getCookie("As1");
+                    b=getCookie("b");
+                    d=getCookie("d");
+                    fck=getCookie("fck");
+                    var ld = getCookie("Ld");
+                    var ldLim = getCookie("Llim");
+                    var ka = getCookie("K");
+                    var normOK = getCookie("normOK");
+                    var lf = getCookie("lf");
+                //    lfo=$("#lf").val();
+                  // lf = document.getElementById('lf').value;
+                  // var lf = document.getElementById('lf').value;
+
+                  //  console.log("lf= "+lfo);
+                  //  console.log("lf znowu = "+lf);
+
+                   console.log('GET COOKIE '+ getCookie("K") +' ld  '+
+                   getCookie("Ld") + ' Llim  '+ ldLim + '  normOK '+getCookie("normOK"));
+                   console.log("----------------------> Mz= " +mz+"as1= "+as1+"b= "+b+"d= "+d+"fck= "+fck);
+                   var as1p = as1 * 1.05;
+                   var z = ( 0.85 * d )/as1p;
+                   var deltaS = mz/(z*d);
+                   console.log("deltaS="+deltaS);
+
+
+                   var ro0 = 0.001 * Math.sqrt(fck);
+                   var ro = as1 / (b*d);
+                   var delta;
+                   console.log("ro="+ro);
+                   if (ro <= ro0 ) delta = 11 + 1.5 * Math.sqrt(fck) * (ro0/ro) + 3,2 * Math.sqrt(fck) * (Math.pow ( ((ro0/ro) -1 ),3/2 ) );
+                   else delta = 11+ 1.5 * Math.sqrt(fck) * (ro0/ro);
+                   var ld = ( 310/deltaS ) * ka * delta;
+                   var ldLim = lf/d;
+                   var normOK;
+                   if (ld > ldLim) {console.log( 'Gratulacje!!! Wymagania normy zostały spełnione');normOK=true;}
+                   else {console.log ('Wymagania normy nie zostały spełnione');normOK=false;}
+
+
+                   var wynikS ='';
+                   wynikS='Parametry:'+'<br>'
+                           +'K='+ka+'<br>'
+                           +'Ld='+ld+'<br>'
+                           +'Ldlim='+ldLim+'<br>';
+                   $("#wyniki_3").html(wynikS);
+
+   								 setCookie ("Ld",ld, 12);
+                   setCookie ("Llim", ldLim, 12);
+                   setCookie ("normOK", normOK, 12);
+
+                   console.log('GET COOKIE '+ getCookie("K") +' ld  '+
+                    getCookie("Ld") + ' Llim  '+ ldLim + '  normOK '+getCookie("normOK"));
+
+                    var wynikiS='';
+                    wynikS='Parametry:'+'<br>'
+                    +'hBelki='+b+'<br>'
+                    +' szBelki='+d+'<br>'
+                    +' ldLim='+ldLim+'<br>'
+                    +' ld='+ld+'<br>'
+                    +' normOK='+normOK+'<br>'
+                    +' fck='+fck+'<br>'
+
+                    $("#wyniki_3").html(wynikS);
+
+                    function setCookie(cname, cvalue, exdays) {
+                      var d = new Date();
+                      d.setTime(d.getTime() + (exdays*24*60*60*1000));
+                      var expires = "expires="+ d.toUTCString();
+                      document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+                    }
+                   function getCookie(cname) {
+                   var name = cname + "=";
+                   var decodedCookie = decodeURIComponent(document.cookie);
+                   var ca = decodedCookie.split(';');
+                   for(var i = 0; i <ca.length; i++) {
+                     var c = ca[i];
+                     while (c.charAt(0) == ' ') {
+                       c = c.substring(1);
+                     }
+                     if (c.indexOf(name) == 0) {
+                       return c.substring(name.length, c.length);
+                     }
+                   }
+                   return "";
+                   }
+
+                     </script>
+            </body>
+    </html>

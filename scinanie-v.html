@@ -1,0 +1,47 @@
+<!Doctype html>
+    <html lang="pl">
+        <head>
+                <meta charset="utf-8">
+                <title>ścinanie-v </title>
+                <meta name="description" content="The HTML5">
+                <meta name="Maciej_Marosz" content="IT POL">
+                <link rel="stylesheet" href="menu.css">
+                <link rel="shortcut icon" href="#">
+                <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+                <script src="scripts/require.js"></script>
+                <script src = "jquery-3.4.1.min.js"></script>
+
+        </head>
+
+            <body>
+              <div id ="scinanietext"> Podaj wartość siły ścinającej przekrój w [kN]</div>
+              <br><br><br><br>
+            <form  id ="vauform" name="vauform" action="/scinanie.html">
+              <input type="text" id="vau" name ="vau" value="podaj v" onfocus="this.value='';">
+              <input type="button" class="btn" value="Obllicz" onclick= "myfunk2()">
+            <form>
+              <script type="text/javascript">
+
+
+          function myfunk2(){
+              document.forms['vauform'].submit();
+              const data = Object.fromEntries(new FormData(vauform).entries());
+              console.log("--------------  vau = "+data.vau);
+
+              setCookie("vau",data.vau,12);
+
+              function setCookie(cname, cvalue, exdays) {
+              var d = new Date();
+              d.setTime(d.getTime() + (exdays*24*60*60*1000));
+              var expires = "expires="+ d.toUTCString();
+              document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+            }
+
+
+
+
+              }
+
+              </script>
+            </body>
+        </html>

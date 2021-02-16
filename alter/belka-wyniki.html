@@ -1,0 +1,65 @@
+<!Doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+
+  <title>belka-obciążenia-wyniki </title>
+  <meta name="description" content="The HTML5">
+  <meta name="Maciej_Marosz" content="IT POL">
+
+  <link rel="stylesheet" href="belka.css">
+  <link rel="shortcut icon" href="#">
+  <script src = "jquery-3.4.1.min.js"></script>
+  <script src="scripts/require.js"></script>
+
+
+<!-- <script src="plik.js"></script> -->
+</head>
+
+<body style="background-color:white;color:black;">
+<div id="wyniki">W Y N I K I</div>
+  <!-- <div id="wyniki_2"></div>  -->
+  <div id="wyniki_3" style="font-size:34"></div>
+<!--<textarea>tutaj nic takiego</textarea> -->
+<script type="text/javascript" charset="utf-8" >
+var txt = '';
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function(){
+  if(xmlhttp.status == 200 && xmlhttp.readyState == 4){
+    txt = xmlhttp.responseText;
+  }
+};
+xmlhttp.open("GET","./input.txt",true);
+xmlhttp.send();
+console.log('txt     '+txt);
+console.log('koniec prostego kodu');
+var hereDisp;
+var myInit = {method: 'GET',
+									headers: { 'Content-Type': 'application/json'},
+									mode: 'cors',
+									cache: 'default' };
+		let myRequest = new Request ("./belka.json", myInit);
+		fetch (myRequest).then (function(resp) {
+																	return resp.json ();
+																	}).then (function (datax) {
+
+																	console.log( "to masz teraz jsona \n "+JSON.stringify(datax));
+                                var s = datax.mi;
+                                var wynikiS='';
+
+                                wynikS='Parametry:'+'<br>'
+                                +'hBelki='+datax.hBelki+'<br>'
+                                +'szBelki='+datax.szBelki+'<br>'
+                                +'otulina='+datax.otulina+'<br>'
+                                +'fi='+datax.fi+'<br><br>'
+                                +'Obliczono:'+'<br>'
+                                +'mi='+datax.mi+'<br>'
+                                +'As1='+datax.As1+'<br>';
+                                $("#wyniki_3").html(wynikS);
+
+                                });
+document.cookie="hBelki= datax.hBelki";
+document.cooie = "szBelki= datax.szBelki";
+</script>
+</body>
+</html>

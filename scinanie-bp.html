@@ -1,0 +1,95 @@
+<!Doctype html>
+    <html lang="pl">
+        <head>
+                <meta charset="utf-8">
+                <title>Ścinanie-bp </title>
+                <meta name="description" content="The HTML5">
+                <meta name="Maciej_Marosz" content="IT POL">
+                <link rel="stylesheet" href="menu.css">
+                <link rel="shortcut icon" href="#">
+                <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+                <script src="scripts/require.js"></script>
+                <script src = "jquery-3.4.1.min.js"></script>
+
+        </head>
+
+            <body>
+
+<form id="chK">
+    <div class="bl1" style="display:inline-block;font-size:55px; text-align:center;"> Belka </div>
+    <div class="bl2" style="display:inline-block;font-size:55px; text-align:center;">&nbsp;czy &nbsp;</div>
+    <div class="bl3" style="display:inline-block;font-size:55px; text-align:center;"> płyta żelbetowa?</div>
+    <div style="float:left"></div>
+    <br><br>
+
+    <br>
+    <ul>
+        <li>
+            <button id="btn1">
+                belka
+            <span></span>
+            </button>
+        </li>
+        <br>
+        <li>
+            <button id="btn2" >
+                płyta żelbetowa
+            <span></span>
+            </button>
+        </li>
+        <br>
+    <ul>
+</form>
+
+
+<script type="text/javascript" charset="utf-8">
+    var bp;
+    $('#btn1').one('click', function (event) {
+      bp=0;
+      setCookie("bp",bp,12);
+      console.log("cookie bp="+ getCookie("bp"));
+
+      window.location.href = 'scinanie-v.html';
+      return false;
+    });
+    $('#btn2').one('click', function (event) {
+      bp=1;
+      setCookie("bp",bp,12);
+      console.log("cookie bp="+ getCookie("bp"));
+      window.location.href = 'scinanie-v.html';
+      return false;
+    });
+
+
+    function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+    function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+    }
+
+
+
+</script>
+
+
+
+  </body>
+
+
+</html>
