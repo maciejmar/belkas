@@ -41,32 +41,38 @@
               }
               return "";
               }
-
+              var MMTOMETERS = 0.001;
               var kl=['15','20','25','30','37','45','50'];
+              var fcktab=['12','16','20','25','30','35','40'];
               var fcrnTab = ['1.6','1.9','2.2','2.6','2.9','3.2','3.5'];
               var ecnTab = ['26','27.5','29','30.5','32','33.5','35'];
               var fck = getCookie('fck');
-              var d = getCookie('d');
-              var fcrn = fcrnTab[findIndex(fck,kl)];
+              var dd = getCookie('d')*MMTOMETERS;
+              var d_h_minus_a = getCookie('d_h_minus_a');
+              var fcrn = fcrnTab[findIndex(fck,fcktab)];
               var ectn = ecnTab[findIndex(fck,kl)];
               var otulina = getCookie('otulina');
               var blad = getCookie('blad');
               var fi = getCookie('fi');
               var b = getCookie('b');
               var h = getCookie('h');
-              var a = h - otulina-blad-(fi/2);
+              var fis = getCookie('fis');
+              var d = b - otulina-blad-fis-(fi/2);
+              d=d*MMTOMETERS;
+              console.log('d=',d);
               var mz = getCookie('mz');
               var As1p = 1.05*getCookie('As1');
-
-              var hcef = 2.5 *a;
-              var ros = mz/(0.85*d*As1p);
-              var ropef = As1p/(b*hcef);
+              var aa = parseFloat(otulina) + parseFloat(blad)+parseFloat(fis)+((parseFloat(fi)/2));
+              var hcef = 2.5 *aa*MMTOMETERS;
+              var ros = mz/(0.85*d_h_minus_a*As1p);
+              var ropef = As1p/(dd*hcef);
               const k =1;
-              var fp = (k * ectn)/ropef;
+              var fp = (k * fcrn)/ropef;
               const omega = 0.3;
               var ksis = ros;
               var ksisN= Math.max(0.6*ksis,ksis-0.4*(fp+19));
-              var Fi = (8.53/fp)*((200*omega)/ksisN);
+              var c = aa-(12/2);
+              var Fi = (8.53/fp)* ( ((200000*omega)/ksisN) -3.4*c  );
               console.log(Fi);
               setCookie("ksisN",ksisN,12);
               setCookie("Fi", Fi,12);

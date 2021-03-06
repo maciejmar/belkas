@@ -25,18 +25,20 @@
               </div>
               <script type="text/javascript">
               var taurd;
-              var klbet=['15','20','25','30','37','45','50','55','60'];
-              var tau = ['0.18', '0.22', '0.26','0.3','0.34','0.37','0.41','0.44','0.48'];
-
+              const MMTOMETERS =0.001;
+            // var klbet=['15','20','25','30','37','45','50','55','60'];
+            // var tau = ['0.18', '0.22', '0.26','0.3','0.34','0.37','0.41','0.44','0.48'];
+              var taurdTab=['0.18','0.22','0.26','0.30','0.34','0.37','0.41'];
+              var klbet=['12','16','20','25','30','35','40'];
               var fck = getCookie(fck);
               for(i=0;i<klbet.length;i++)
                 if (fck == klbet[i]) { taurd = tau[i]; break;}
-              var d = getCookie("d");
+              var d_h_minus_a = getCookie("d_h_minus_a");
               var As1 = getCookie("As1");
               var As1p = As1*1.05;
-              var b=getCookie('b');
-              var d=getCookie('d');
-              var rol = As1p/(b*d);
+              var do_to_b=getCookie('d')*MMTOMETERS;
+              //var d=getCookie('d');
+              var rol = As1p/(do_to_b*d_h_minus_a);
               console.log("rol = "+rol);
               var sci =  document.getElementById('sci');
               if (rol>0.02){
@@ -47,14 +49,14 @@
               }
               else sci.innerText = "";
 
-              var kk = 1.6-d;
+              var kk = 1.6-d_h_minus_a;
               if(kk<1) kk=1;
 
               var bp = getCookie("bp");
 
 
-              var taurdTab=['0.18','0.22','0.26','0.30','0.34','0.37','0.41','0.44','0.48'];
-              klbet=['15','20','25','30','37','45','50','55','60'];
+              //var taurdTab=['0.18','0.22','0.26','0.30','0.34','0.37','0.41','0.44','0.48'];
+            //  klbet=['15','20','25','30','37','45','50','55','60'];
               function findIndex (value, tab){
                    console.log ("value=     "+value+"   tab= "+tab);
               		for (i=0;i<tab.length;i++) {
@@ -63,15 +65,18 @@
               		return -1;
               }
               var fckIndex = findIndex(getCookie("fck"),klbet);
+              console.log('fck i index ',getCookie("fck"), '   ',fckIndex);
               var taurd = taurdTab[fckIndex];
               console.log("taurd= "+taurd);
 
               //dla belki
-              console.log("taurd "+taurd+" kk="+kk+" b="+b+ " d="+d);
-              if (!bp) var vaurd1 = 1.4 * taurd * kk * (1.2 + 40 * rol)*b*d;
-              else var vaurd1 = 2.2*kk*taurd*b*d;
-
-              wynikS='vaird1 = '+vaurd1+'<br>'+'vau ='+getCookie("vau");
+              console.log("taurd "+taurd+" kk="+kk);
+              if (!parseInt(bp)) var vaurd1 = 1.4 * taurd * kk * (1.2 + 40 * rol)*do_to_b*d_h_minus_a;
+              else var vaurd1 = 2.2*kk*taurd*do_to_b*d_h_minus_a;
+              vaurd1*=(1/MMTOMETERS);
+              var norma = true;
+              if( vaurd1 > parseFloat(getCookie("vau")) ) norma = true;else norma = false;
+              wynikS='vaird1 = '+vaurd1+'<br>'+'vau ='+getCookie("vau")+'<br>'+'Warunek normy vaird1 > vau :'+norma;
                 $("#wyniki_3").html(wynikS);
 
               function getCookie(cname) {

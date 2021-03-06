@@ -32,7 +32,7 @@
 function myFunction() {
 
 //  const fs = require("fs");
-
+const MMTOMETERS = 0.001;
   document.forms['formula'].submit();
   document.forms['e2'].submit();
   //document.forms['pn99'].submit();
@@ -41,11 +41,11 @@ function myFunction() {
 const data = Object.fromEntries(new FormData(formula).entries());
 const data1=Object.fromEntries(new FormData(e2).entries());
 //const data2=Object.fromEntries(new FormData(pn99).entries());
- console.log('********data='+ data.hbelki, data.otulina, data.blad, data.fi);
- var d = (parseFloat(data.hbelki) -parseFloat(data.otulina)- parseFloat(data.blad)-parseFloat(data.fi*0.5));
+ console.log('********data='+ data.hbelki, data.otulina, data.blad, data.fi,' mz = ',parseFloat (data.mz));
+  var d = MMTOMETERS*(parseFloat(data.hbelki) - parseFloat(data.otulina)- parseFloat(data.blad)- - parseFloat(data.fis) - parseFloat(data.fi*0.5));
  console.log('d='+ d);
  var fcd=13.0;
- var mi= (parseFloat(data.mz))/(1* 0.001*(d*d) *0.85*fcd);
+ var mi= (MMTOMETERS*parseFloat(data.mz))/((d*d) *0.85*fcd);
  console.log("mi="+mi);
 
  var klbetC=["C12/15", "C16/20", "C20/25", "C25/30", "C30/37", "C35/45", "C40/50", "C45/55", "C50/60", "C55/65", "C60/70"]
@@ -76,26 +76,21 @@ var fyk=[220, 240, 240, 240, 240, 355, 355, 355, 395, 410, 410, 400, 400, 490, 5
 var fyd = [190, 210, 210, 210, 210, 310, 310, 310, 350, 350, 350, 350, 350, 420, 420, 420];
 
 var e2value = document.querySelector('input[name="klbetonu"]:checked').value;
-console.log('e2value to teraz jest ---#################'+e2value);
+
 setCookie("klbetonu",e2value,12);
 var ind = klbetC.findIndex(k => k == e2value);
 //fck here gains a value
 var fck = klbet[1][ind];
-console.log('fck = -----------------'+fck);
+
 var klStali = document.querySelector('input[name="klS"]:checked').value;
 var cechaB = document.querySelector('input[name="cechab"]:checked').value;
-console.log ('e2value - '+e2value);
+
 setCookie("cechaB",cechaB,12);
 setCookie("klStali",klStali,12);
 var rBet = ['Wytrzymałość gwarantowana fG c,cube', 'Wytrzymałość charakterystyczna fck',
 'Wytrzymałość obliczeniowa fcd(beton zbrojony)', 'Wytrzymałość obliczeniowa f*cd (beton niezbrojony)'];
 
-console.log ('klstali   tu jest   ='+ klStali.toString());
-var a='astanavista';
-console.log ('hello   '+a.toString());
-console.log('data1 e2 = '+e2value);
-console.log("klS"+klStali+"  00000");
-console.log('cechaB = '+cechaB);
+
 function findIndex (value, tab){
      console.log ("value=     "+value+"   tab= "+tab);
     for (i=0;i<tab.length;i++) {
@@ -103,18 +98,22 @@ function findIndex (value, tab){
     }
     return -1;
 }
+console.log('----====----=====------======------')
 console.log('FindIndex='+ findIndex(e2value, klbetC));
 console.log('Stal = '+ findIndex (klStali, gStali));
 console.log('Cecha ='+ findIndex (cechaB, rBet));
 
  console.log('data='+ data.hbelki, data.otulina, data.blad, data.fi);
- var d = (parseFloat(data.hbelki) -parseFloat(data.otulina)- parseFloat(data.blad)-parseFloat(data.fi*0.5));
+ var d = MMTOMETERS*(parseFloat(data.hbelki) - parseFloat(data.otulina)- parseFloat(data.blad)-parseFloat(data.fis)-parseFloat(data.fi*0.5));
  console.log('d='+ d);
- var fcd=klbet[i][findIndex(e2value, klbetC)];
+ var d_h_minus_a = d;
+ var fcd=klbet[2][findIndex(e2value, klbetC)];
+
  console.log('fcd = '+ fcd);
- console.log ('mi params   mz = '+parseFloat(data.mz)+ 'fcd=' +fcd );
- d=d*0.001;
- var mi= (parseFloat(data.mz))/(  d*d *0.85*fcd);
+ console.log ('mi params   mz = '+ parseFloat(data.mz)+ ' fcd=' +fcd );
+
+ console.log('sz belki - ',data.szbelki);
+ var mi= (parseFloat(data.mz))/( MMTOMETERS*data.szbelki* d*d *0.85*fcd);
  console.log("mi="+mi);
  console.log('klbet length - '+klbet[0].length);
  console.log ('gStali długość - '+gStali.length);
@@ -137,18 +136,18 @@ if (mi<=mi_lim)  {
       console.log("omega = "+omega);
       }
 else {
-omega = ((1-ksi_lim)/ksi_lim) * [(0.973-Math.pow(Math.sqrt(0.947-1.95*mi),2))/(Math.sqrt(0.947-1.95*mi) - 0.164)];
+omega = ((1-ksi_lim)/ksi_lim) * [ Math.pow( 0.973-Math.sqrt( 0.947-1.95*mi ),2) / (Math.sqrt(0.947-1.95*mi) - 0.164)];
 console.log (" Mi > Mi-limes !!!!!");
 console.log ('Omega = ' + omega);
 }
-console.log( "params do as1 = " +omega +"   sz belki  " +d+"    " + Fyd+ "    " +fcd);
-var As1= (omega *d) * ((0.85*fcd)/Fyd);
+console.log( "params do as1 omega = " +omega +"   d = " + d +" Fyd =   " + Fyd+ " fcd=    " +fcd +' b='+ data.szbelki);
+var As1= (omega * MMTOMETERS*parseFloat(data.szbelki) *d) * ((0.85*fcd)/Fyd);
 console.log("As1min params    "+parseFloat(data.szbelki)+ "    " +d+"  "+Fyk);
-var As1min = (0.6*parseFloat(data.szbelki)*d )/Fyk;
+var As1min = (0.6* ( MMTOMETERS* parseFloat(data.szbelki) ) *d )/Fyk;
 //console.log('as1 params\ :  '+parseFloat(data.szbelki)+'  '+ d+ '  ' + Fyd+ '   '+ fcd+'    '+ omega) ;
-console.log("Asmin2 params  szbelki ="+parseFloat(data.szbelki)*100+" d*100    "+d*100);
-As1min2=0.0015*parseFloat(data.szbelki)*100*d*100;
-As1min2=As1min2*0.0001;
+console.log("Asmin2 params  szbelki ="+parseFloat(data.szbelki)*0.001+" d   "+d);
+As1min2=0.0015* (MMTOMETERS* parseFloat(data.szbelki)) *d;
+//As1min2=As1min2*0.0001;
 console.log('As1='+As1+'   As1min= '+As1min+'   As1min2='+As1min2);
 var max = Math.max(As1, As1min, As1min2);
 console.log("Wynik - As1 = "+ max+ " [m]");
@@ -164,7 +163,7 @@ console.log("Wynik - As1 = "+ max+ " [m]");
 
 
       let dataJo2 = {"hBelki":data.hbelki, "szBelki":data.szbelki,"otulina":data.otulina,
-       "fi":data.fi, "blad":data.blad, "fck":fck, "mi":mi, "As1":As1};
+       "fi":data.fi, "fis":data.fis, "blad":data.blad, "fck":fck, "mi":mi, "As1":As1};
       let dataJo3=JSON.stringify(dataJo2);
 
         // This variable stores all the data.
@@ -173,6 +172,7 @@ console.log("Wynik - As1 = "+ max+ " [m]");
             "szBelki: " + data.szbelki + " \r\n " +
             "otulina: " + data.otulina + " \r\n " +
             "fi: " + data.fi + " \r\n " +
+            "fis: " +data.fis +" \r\n" +
             "blad: " + data.blad+ " \r\n " +
             "fck: " + fck +" \r\n " +
             "mi: "+ mi +" \r\n " +
@@ -182,11 +182,13 @@ console.log("Wynik - As1 = "+ max+ " [m]");
       setCookie("fck",fck,12);
       setCookie("b",data.hbelki,12);
       setCookie("d",data.szbelki,12);
+      setCookie("d_h_minus_a",d_h_minus_a,12)
       setCookie("otulina", data.otulina,12);
       setCookie("fck", fck,12);
       setCookie("mz",data.mz,12);
       //tu dodałem linie 2020-12-23
       setCookie("fi", data.fi, 12);
+      setCookie("fis", data.fis,12);
       setCookie("blad", data.blad, 12);
       setCookie("As1", As1, 12);
       setCookie("mi", mi, 12);
@@ -299,8 +301,7 @@ function setCookie(cname, cvalue, exdays) {
           break;
         }
         else {
-          (console.log("It's fault"));
-          console.log("str - ",str);
+        console.log('');
 
       }
     //inputs[0].checked=true;
@@ -325,6 +326,7 @@ function setCookie(cname, cvalue, exdays) {
 	setInputs("otulina", "otulina");
 	setInputs("blad", "blad");
 	setInputs("fi", "fi");
+  setInputs("fis", "fis");
 	setInputs("mz", "mz");
   setInputsbyName("klbetonu","klbetonu");
   setInputsbyName("cechaB","cechab");
@@ -341,10 +343,11 @@ function setCookie(cname, cvalue, exdays) {
 <div>
 	<div id="entities" >
 		<div class="ent"> hbelki [mm]:  </div>
-		<div class="ent"> szer-belki [m]:  </div>
+		<div class="ent"> szer-belki [mm]:  </div>
 		<div class="ent"> otulina [mm]:   </div>
 		<div class="ent"> błąd [mm]:  </div>
 		<div class="ent"> fi [mm]:   </div>
+    <div class="ent"> fi st. [mm]: </div>
 		<div class="ent"> moment zginający[MNm]   </div>
 	</div>
 
@@ -355,6 +358,7 @@ function setCookie(cname, cvalue, exdays) {
 				<input type="text" name="otulina" id="otulina"><br>
 				<input type="text" name="blad" id="blad"><br>
 				<input type ="text" name="fi" id="fi"><br>
+        <input type ="text" name="fis" id="fis"><br>
 				<input type = "text" name = "mz" id="mz"><br>
 				<input type="button" onclick="myFunction()" value = "OBLICZ">
 		</form>
