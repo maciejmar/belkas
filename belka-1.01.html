@@ -45,8 +45,8 @@ const data1=Object.fromEntries(new FormData(e2).entries());
   var d = MMTOMETERS*(parseFloat(data.hbelki) - parseFloat(data.otulina)- parseFloat(data.blad)- - parseFloat(data.fis) - parseFloat(data.fi*0.5));
  console.log('d='+ d);
  var fcd=13.0;
- var mi= (MMTOMETERS*parseFloat(data.mz))/((d*d) *0.85*fcd);
- console.log("mi="+mi);
+ //var mi= (MMTOMETERS*parseFloat(data.mz))/((d*d) *0.85*fcd);
+// console.log("mi="+mi);
 
  var klbetC=["C12/15", "C16/20", "C20/25", "C25/30", "C30/37", "C35/45", "C40/50", "C45/55", "C50/60", "C55/65", "C60/70"]
  var klbet = [];
@@ -113,7 +113,7 @@ console.log('Cecha ='+ findIndex (cechaB, rBet));
  console.log ('mi params   mz = '+ parseFloat(data.mz)+ ' fcd=' +fcd );
 
  console.log('sz belki - ',data.szbelki);
- var mi= (parseFloat(data.mz))/( MMTOMETERS*data.szbelki* d*d *0.85*fcd);
+ var mi= (parseFloat(data.mz))/( MMTOMETERS*parseFloat(data.szbelki)* d*d *0.85*parseFloat(fcd));
  console.log("mi="+mi);
  console.log('klbet length - '+klbet[0].length);
  console.log ('gStali długość - '+gStali.length);
@@ -153,21 +153,13 @@ var max = Math.max(As1, As1min, As1min2);
 console.log("Wynik - As1 = "+ max+ " [m]");
 //here ends code
 
- var data11=document.forms["formula"]["hbelki"].value;
-  console.log("out of formular after form   "+"hbelki z getelem="+data11);
-
-
- console.log("HERE I AM!");
-
-
-
-
-      let dataJo2 = {"hBelki":data.hbelki, "szBelki":data.szbelki,"otulina":data.otulina,
+     var data11=document.forms["formula"]["hbelki"].value;
+     let dataJo2 = {"hBelki":data.hbelki, "szBelki":data.szbelki,"otulina":data.otulina,
        "fi":data.fi, "fis":data.fis, "blad":data.blad, "fck":fck, "mi":mi, "As1":As1};
-      let dataJo3=JSON.stringify(dataJo2);
+     let dataJo3=JSON.stringify(dataJo2);
 
         // This variable stores all the data.
-        let dataJo =
+     let dataJo =
             "\r hBelki: " + data.hbelki + " \r\n " +
             "szBelki: " + data.szbelki + " \r\n " +
             "otulina: " + data.otulina + " \r\n " +
@@ -351,15 +343,15 @@ function setCookie(cname, cvalue, exdays) {
 		<div class="ent"> moment zginający[MNm]   </div>
 	</div>
 
-	<div id="form1" >
-		<form id="formula" >
-				<input type="text" name="hbelki" id="hbelki"><br>
-				<input type="text" name="szbelki" id="szbelki"><br>
-				<input type="text" name="otulina" id="otulina"><br>
-				<input type="text" name="blad" id="blad"><br>
-				<input type ="text" name="fi" id="fi"><br>
-        <input type ="text" name="fis" id="fis"><br>
-				<input type = "text" name = "mz" id="mz"><br>
+	<div id="form1">
+		<form id="formula" action="#">
+				<input type="text" name="hbelki" id="hbelki" required pattern="[0-9]+(\.[0-9]+)?"><br>
+				<input type="text" name="szbelki" id="szbelki" required pattern="[0-9]+(\.[0-9]+)?"><br>
+				<input type="text" name="otulina" id="otulina" required pattern="[0-9]+(\.[0-9]+)?"><br>
+				<input type="text" name="blad" id="blad" required pattern="[0-9]+(\.[0-9]+)?"><br>
+				<input type ="text" name="fi" id="fi" required pattern="[0-9]+(\.[0-9]+)?"><br>
+        <input type ="text" name="fis" id="fis" required pattern="[0-9]+(\.[0-9]+)?"><br>
+				<input type = "text" name = "mz" id="mz" required pattern="[0-9]+(\.[0-9]+)?"><br>
 				<input type="button" onclick="myFunction()" value = "OBLICZ">
 		</form>
 	</div>

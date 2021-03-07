@@ -10,8 +10,12 @@ input {
 	font-size:34px;
 	margin-bottom:3px;
 
-
 }
+
+input:invalid {
+	background-color: coral;
+}
+
 input[type=radio] {
 
    cursor: pointer;
