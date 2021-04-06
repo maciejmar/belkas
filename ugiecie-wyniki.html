@@ -62,32 +62,34 @@
                    console.log('delta = ',delta, ' ld= ',ld);
                    var ldLim = lf/d_h_minus_a;
                    var normOK;
-                   if (ld > ldLim) {console.log( 'Gratulacje!!! Wymagania normy zostały spełnione');normOK='warunek spełniony';}
-                   else {console.log ('Wymagania normy nie zostały spełnione');normOK='warunek  niespełniony';}
+                   if (ld > ldLim) {console.log( 'Gratulacje!!! Wymagania normy zostały spełnione');normOK='jest spełniony';}
+                   else {console.log ('Wymagania normy nie zostały spełnione');normOK='jest niespełniony';}
 
 
-                   var wynikS ='';
-                   wynikS='Parametry:'+'<br>'
-                           +'K='+ka+'<br>'
-                           +'Ld='+ld+'<br>'
-                           +'Ldlim='+ldLim+'<br>';
-                   $("#wyniki_3").html(wynikS);
+                   // var wynikS ='';
+                   // wynikS='Parametry:'+'<br>'
+                   //         +'K='+ka+'<br>'
+                   //         +'Ld='+ld+'<br>'
+                   //         +'Ldlim='+ldLim+'<br>';
+                   // $("#wyniki_3").html(wynikS);
 
    								 setCookie ("Ld",ld, 12);
                    setCookie ("Llim", ldLim, 12);
                    setCookie ("normOK", normOK, 12);
-                   var szbelki = getCookie('szbelki');
+                   var szbelki = getCookie('d');
 
                    console.log('GET COOKIE '+ getCookie("K") +' ld  '+
                     getCookie("Ld") + ' Llim  '+ ldLim + '  normOK '+getCookie("normOK"));
 
                     var wynikiS='';
                     wynikS='<span>Parametry:'+'<br>'
-                    +'hBelki='+b+'<br>'
-                    +' szBelki='+szbelki+'<br>l<b>eff</b>='+ldLim+'<br>'
-                    +' (l<b>eff</b>/d)<b>lim</b>='+ld+'<br>'
-                    +' norma='+normOK+'<br>'
-                    +' fck='+fck+'<br></span>'
+                    +' hBelki='+b.toFixed(4)+'<br>'
+                    +' szBelki='+getCookie('d')*MMTOMETERS.toFixed(4)+ '<br>'
+                    +' fck='+fck+'<br>'
+                    +' l<b>eff</b>/d='+ld+'<br>'
+                    +' (l<b>eff</b>/d)<b>lim</b>='+ldLim+'<br>'
+                    +' Warunek - l<b>eff</b>/d<=(l<b>eff</b>/d)<b>lim</b> '+normOK+'<br>'
+                    +'</span>'
 
                     $("#wyniki_3").html(wynikS);
 
