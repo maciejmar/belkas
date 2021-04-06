@@ -25,6 +25,7 @@
                     var as1, d,b,mz,fck, lf;
                     const MMTOMETERS = 0.001;
                     var mz=getCookie("mz");
+                    mz = mz/1.2;
                     var as1=getCookie("As1");
                     var b=getCookie("b"); b=b*MMTOMETERS;
                     var d_tu_b=getCookie("d"); d_tu_b=d_tu_b*MMTOMETERS;
@@ -61,8 +62,8 @@
                    console.log('delta = ',delta, ' ld= ',ld);
                    var ldLim = lf/d_h_minus_a;
                    var normOK;
-                   if (ld > ldLim) {console.log( 'Gratulacje!!! Wymagania normy zostały spełnione');normOK=true;}
-                   else {console.log ('Wymagania normy nie zostały spełnione');normOK=false;}
+                   if (ld > ldLim) {console.log( 'Gratulacje!!! Wymagania normy zostały spełnione');normOK='warunek spełniony';}
+                   else {console.log ('Wymagania normy nie zostały spełnione');normOK='warunek  niespełniony';}
 
 
                    var wynikS ='';
@@ -75,18 +76,18 @@
    								 setCookie ("Ld",ld, 12);
                    setCookie ("Llim", ldLim, 12);
                    setCookie ("normOK", normOK, 12);
+                   var szbelki = getCookie('szbelki');
 
                    console.log('GET COOKIE '+ getCookie("K") +' ld  '+
                     getCookie("Ld") + ' Llim  '+ ldLim + '  normOK '+getCookie("normOK"));
 
                     var wynikiS='';
-                    wynikS='Parametry:'+'<br>'
+                    wynikS='<span>Parametry:'+'<br>'
                     +'hBelki='+b+'<br>'
-                    +' szBelki='+d+'<br>'
-                    +' ldLim='+ldLim+'<br>'
-                    +' ld='+ld+'<br>'
-                    +' normOK='+normOK+'<br>'
-                    +' fck='+fck+'<br>'
+                    +' szBelki='+szbelki+'<br>l<b>eff</b>='+ldLim+'<br>'
+                    +' (l<b>eff</b>/d)<b>lim</b>='+ld+'<br>'
+                    +' norma='+normOK+'<br>'
+                    +' fck='+fck+'<br></span>'
 
                     $("#wyniki_3").html(wynikS);
 

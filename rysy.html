@@ -61,6 +61,7 @@
               d=d*MMTOMETERS;
               console.log('d=',d);
               var mz = getCookie('mz');
+              mz = mz/1.2;
               var As1p = 1.05*getCookie('As1');
               var aa = parseFloat(otulina) + parseFloat(blad)+parseFloat(fis)+((parseFloat(fi)/2));
               var hcef = 2.5 *aa*MMTOMETERS;
@@ -74,9 +75,16 @@
               var c = aa-(fi/2);
               var fig = (8.53/fp)* ( ((200000*omega)/ksisN) -3.4*c  );
               console.log('fig=',fig);
+
+              var Fimax;
+              var k2 = 0.5;
+              Fimax = (k*fcrn)/(2.9*k2);
+
+
               setCookie("ksisN",ksisN,12);
               setCookie("Fig", fig,12);
               setCookie("ropef",ropef,12);
+              setCookie("Fimax",Fimax,12);
 
               function getCookie(cname) {
               var name = cname + "=";

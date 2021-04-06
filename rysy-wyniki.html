@@ -23,13 +23,15 @@
         <script type="text/javascript" charset="utf-8">
 
           var ksisN = getCookie("ksisN");
-          var Fi = getCookie("Fi");
+          var Fig = getCookie("Fig");
           var ropef = getCookie("ropef");
+          var Fimax = getCookie("Fimax");
              var wynikS='';
-             wynikS='Parametry:'+'<br>'
-                     +'ksisN='+ksisN+'<br>'
-                     +'Fi='+Fi+'<br>'
-                     +'ropef='+ropef+'<br>';
+             wynikS='<span>Parametry:'+'<br>'
+                     +'&#948<b>Sm</b>='+ksisN+'<br>'
+                     +'&#934*='+Fig+'<br>'
+                     +'&#961<b>pf</b>='+ropef+'<br>'
+                     +'&#934<b>max</b>='+Fimax+ '<br></span>';
              $("#wyniki_3").html(wynikS);
              console.log("ksisN=",ksisN);
              console.log("rubbish");
