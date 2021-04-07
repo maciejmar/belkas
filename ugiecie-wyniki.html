@@ -62,7 +62,7 @@
                    console.log('delta = ',delta, ' ld= ',ld);
                    var ldLim = lf/d_h_minus_a;
                    var normOK;
-                   if (ld > ldLim) {console.log( 'Gratulacje!!! Wymagania normy zostały spełnione');normOK='jest spełniony';}
+                   if (ld <= ldLim) {console.log( 'Gratulacje!!! Wymagania normy zostały spełnione');normOK='jest spełniony';}
                    else {console.log ('Wymagania normy nie zostały spełnione');normOK='jest niespełniony';}
 
 
@@ -88,7 +88,7 @@
                     +' fck='+fck+' [MPa]<br>'
                     +' l<b>eff</b>/d='+ld+'<br>'
                     +' (l<b>eff</b>/d)<b>lim</b>='+ldLim+'<br>'
-                    +' Warunek - l<b>eff</b>/d<=(l<b>eff</b>/d)<b>lim</b> '+normOK+'<br>'
+                    +' Warunek: l<b>eff</b>/d<=(l<b>eff</b>/d)<b>lim</b> '+normOK+'<br>'
                     +'</span>'
 
                     $("#wyniki_3").html(wynikS);
