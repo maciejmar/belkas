@@ -75,9 +75,9 @@
               else var vaurd1 = 2.2*kk*taurd*do_to_b*d_h_minus_a;
               vaurd1*=(1/MMTOMETERS);
               var norma;
-              if( vaurd1 >= parseFloat(getCookie("vau")) ) norma = 'warunek spełniony';else norma = 'warunek niespełniony';
+              if( vaurd1 >= parseFloat(getCookie("vau")) ) norma = 'jest spełniony';else norma = 'jest niespełniony';
               wynikS='<span>V<b>Rd1</b> = '+vaurd1.toFixed(2)+' [kN]<br>'+'V<b>d</b> ='+
-              getCookie("vau")+' [kN]<br>'+'Warunek: V<b>Rd1</b> >= V<b>d</b> :</span>'+norma;
+              getCookie("vau")+' [kN]<br>'+'Warunek: V<b>Rd1</b> >= V<b>d</b> </span>'+norma;
                 $("#wyniki_3").html(wynikS);
 
               function getCookie(cname) {
