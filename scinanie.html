@@ -77,7 +77,7 @@
               var norma;
               if( vaurd1 >= parseFloat(getCookie("vau")) ) norma = 'warunek spełniony';else norma = 'warunek niespełniony';
               wynikS='<span>V<b>Rd1</b> = '+vaurd1.toFixed(2)+' [kN]<br>'+'V<b>d</b> ='+
-              getCookie("vau")+' [kN]<br>'+'Warunek normy V<b>Rd1</b> >= V<b>d</b> :</span>'+norma;
+              getCookie("vau")+' [kN]<br>'+'Warunek: V<b>Rd1</b> >= V<b>d</b> :</span>'+norma;
                 $("#wyniki_3").html(wynikS);
 
               function getCookie(cname) {
