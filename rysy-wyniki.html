@@ -23,11 +23,13 @@
         <script type="text/javascript" charset="utf-8">
           var drysy = getCookie("drysy");
           var ksisN = getCookie("ksisN");
-          var Fig   = getCookie("Fig");
+          var Fig   = parseFloat(getCookie("Fig"));
           var ropef = getCookie("ropef");
           var ros =   getCookie("ros");
-          var Fimax = getCookie("Fimax");
+          var Fimax = parseFloat(getCookie("Fimax"));
           var fp    = getCookie("fp");
+          var norma;
+          if (Fimax>=Fig) norma="jest spełniony"; else norma ="nie jest spełniony";
              var wynikS='';
              wynikS='<span>Obliczono:'+'<br>'
                      +'&#948<b>Sm</b>='+parseFloat(ksisN).toFixed(2)+' [MPa]<br>'
@@ -35,7 +37,8 @@
                      + 'f<b>p</b>='+parseFloat(fp).toFixed(2)+' [Mpa]<br>'
                      +'&#934*='+parseFloat(Fig).toFixed(2)+' [mm]<br>'
                      //+'&#961<b>pf</b>='+ropef+'<br>'
-                     +'&#934<b>max</b>='+parseFloat(Fimax).toFixed(2)+ ' [mm]<br></span>';
+                     +'&#934<b>max</b>='+parseFloat(Fimax).toFixed(2)+ ' [mm]<br>'
+                     +'Warunek: &#934<b>max</b> >&#934 ' +norma +'</span>';
              $("#wyniki_3").html(wynikS);
              console.log("ksisN=",ksisN);
              console.log("rubbish");
