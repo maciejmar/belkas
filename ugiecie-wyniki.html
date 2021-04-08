@@ -49,7 +49,7 @@
                    var deltaS = mz/(z*as1p);
                    console.log("deltaS="+deltaS);
 
-                   console.log('lf , mz, z ',lf,' , ',mz,' , ', z);
+                   console.log('tutaj lf , mz, z ',lf,' , ',mz,' , ', z);
                    var ro0 = 0.001 * Math.sqrt(fck);
                    console.log('tu jest ro0=',ro0);
                    console.log('obliczanie ro as1 b dh-a :',as1, '  ',d_tu_b,'  ',d_h_minus_a );
@@ -58,10 +58,9 @@
                    console.log("ro="+ro);
                    if (ro <= ro0 ) delta = 11 + 1.5 * Math.sqrt(fck) * (ro0/ro) + 3,2 * Math.sqrt(fck) * (Math.pow ( (ro0/ro) -1 ,0.66667 ) );
                    else delta = 11+ 1.5 * Math.sqrt(fck) * (ro0/ro);
-                   var ld = ( 310/deltaS ) * ka * delta;
-                   //ld = ld/d_h_minus_a;
-                   console.log('delta = ',delta, ' ld= ',ld);
-                   var ldLim = lf/d_h_minus_a;
+                   var ldLim = ( 310/deltaS ) * ka * delta;
+                   console.log('delta = ',delta, ' ld= ',ld, 'deltas ',deltaS);
+                   var ld = lf/d_h_minus_a;
                    var normOK;
                    if (ld <= ldLim) {console.log( 'Gratulacje!!! Wymagania normy zostały spełnione');normOK='jest spełniony';}
                    else {console.log ('Wymagania normy nie zostały spełnione');normOK='jest niespełniony';}
