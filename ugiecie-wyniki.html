@@ -76,6 +76,7 @@
    								 setCookie ("Ld",ld, 12);
                    setCookie ("Llim", ldLim, 12);
                    setCookie ("normOK", normOK, 12);
+                   setCookie("delta",delta,12);
                    var szbelki = getCookie('d');
 
                    console.log('GET COOKIE '+ getCookie("K") +' ld  '+
@@ -86,6 +87,8 @@
                     +' hBelki='+b.toFixed(4)+' [m]<br>'
                     +' szBelki='+getCookie('d')*MMTOMETERS.toFixed(4)+ ' [m]<br>'
                     +' fck='+fck+' [MPa]<br>'
+                    +' &#955;='+delta+'<br>'
+                    +' &#963;<b>s1</b>='+deltaS+'<br>'
                     +' l<b>eff</b>/d='+ld+'<br>'
                     +' (l<b>eff</b>/d)<b>lim</b>='+ldLim+'<br>'
                     +' Warunek: l<b>eff</b>/d<=(l<b>eff</b>/d)<b>lim</b> '+normOK+'<br>'
