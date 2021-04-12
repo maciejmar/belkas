@@ -56,7 +56,7 @@
                    var ro = as1 / (d_tu_b*d_h_minus_a);
                    var delta;
                    console.log("ro="+ro);
-                   if (ro <= ro0 ) delta = 11 + 1.5 * Math.sqrt(fck) * (ro0/ro) + 3,2 * Math.sqrt(fck) * (Math.pow ( (ro0/ro) -1 ,0.66667 ) );
+                   if (ro <= ro0 ) delta = 11 + 1.5 * Math.sqrt(fck) * (ro0/ro) + 3,2 * Math.sqrt(fck) * (Math.pow ( (ro0/ro) -1 ,1.5 ) );
                    else delta = 11+ 1.5 * Math.sqrt(fck) * (ro0/ro);
                    var ldLim = ( 310/deltaS ) * ka * delta;
                    console.log('delta = ',delta, ' ld= ',ld, 'deltas ',deltaS);
