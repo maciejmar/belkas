@@ -8,7 +8,7 @@ var app=express();
 //el.innerHTML = "<html><head><title>titleTest</title></head><body><p>hello world!</p></body></html>";
 //var pageHTML2 = "<!DOCTYPE HTML ><html><head><title>titleTest</title></head><body><p>hello world!</p></body></html>";
 
-	console.log('server at 1337');
+	console.log('server at 1338');
 	
 	app.use(express.static(__dirname + "/"));
 	app.get('/', function (req,res) {
@@ -26,6 +26,6 @@ var app=express();
    
    
   
-   app.listen(1337);
- // server.listen(1337, '127.0.0.1'); 
+   app.listen(1338);
+ // server.listen(1338, '127.0.0.1'); 
       
