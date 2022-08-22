@@ -42,14 +42,12 @@ const data = Object.fromEntries(new FormData(formula).entries());
 const data1=Object.fromEntries(new FormData(e2).entries());
 //const data2=Object.fromEntries(new FormData(pn99).entries());
  console.log('********data='+ data.hbelki, data.otulina, data.blad, data.fi,' mz = ',parseFloat (data.mz));
-<<<<<<< HEAD
+
 //mz is modified by param
 var mz = parseFloat(data.mz);
 mz = mz/1.25;
  var d = MMTOMETERS*(parseFloat(data.hbelki) - parseFloat(data.otulina)- parseFloat(data.blad)- - parseFloat(data.fis) - parseFloat(data.fi*0.5));
-=======
-  var d = MMTOMETERS*(parseFloat(data.hbelki) - parseFloat(data.otulina)- parseFloat(data.blad) - parseFloat(data.fis) - parseFloat(data.fi*0.5));
->>>>>>> 41301a05788515b7dede5355ba277d92fbfec946
+
  console.log('d='+ d);
  var fcd=13.0;
 
