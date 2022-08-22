@@ -139,7 +139,8 @@ if (mi<=mi_lim)  {
       console.log("omega = "+omega);
       }
 else {
-omega = ((1-ksi_lim)/ksi_lim) * [ Math.pow( 0.973-Math.sqrt( 0.947-1.95*mi ),2) / (Math.sqrt(0.947-1.95*mi) - 0.164)];
+omega = ((1-ksi_lim)/ksi_lim) * [ Math.pow( 0.973 - Math.sqrt( 0.947-1.95*mi ),2) / (Math.sqrt(0.947-1.95*mi) - 0.164)];
+console.log('potega = '+ [ Math.pow( 0.973 - Math.sqrt( 0.947-1.95*mi ),2) / (Math.sqrt(0.947-1.95*mi) - 0.164)]);
 console.log (" Mi > Mi-limes !!!!!");
 console.log ('Omega = ' + omega);
 }
