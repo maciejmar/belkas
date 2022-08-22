@@ -42,11 +42,13 @@ const data = Object.fromEntries(new FormData(formula).entries());
 const data1=Object.fromEntries(new FormData(e2).entries());
 //const data2=Object.fromEntries(new FormData(pn99).entries());
  console.log('********data='+ data.hbelki, data.otulina, data.blad, data.fi,' mz = ',parseFloat (data.mz));
-  var d = MMTOMETERS*(parseFloat(data.hbelki) - parseFloat(data.otulina)- parseFloat(data.blad)- - parseFloat(data.fis) - parseFloat(data.fi*0.5));
+//mz is modified by param
+var mz = parseFloat(data.mz);
+mz = mz/1.25;
+ var d = MMTOMETERS*(parseFloat(data.hbelki) - parseFloat(data.otulina)- parseFloat(data.blad)- - parseFloat(data.fis) - parseFloat(data.fi*0.5));
  console.log('d='+ d);
  var fcd=13.0;
- //var mi= (MMTOMETERS*parseFloat(data.mz))/((d*d) *0.85*fcd);
-// console.log("mi="+mi);
+
 
  var klbetC=["C12/15", "C16/20", "C20/25", "C25/30", "C30/37", "C35/45", "C40/50", "C45/55", "C50/60", "C55/65", "C60/70"]
  var klbet = [];
@@ -110,10 +112,10 @@ console.log('Cecha ='+ findIndex (cechaB, rBet));
  var fcd=klbet[2][findIndex(e2value, klbetC)];
 
  console.log('fcd = '+ fcd);
- console.log ('mi params   mz = '+ parseFloat(data.mz)+ ' fcd=' +fcd );
+ console.log ('mi params   mz = '+ mz+ ' fcd=' +fcd );
 
  console.log('sz belki - ',data.szbelki);
- var mi= (parseFloat(data.mz))/( MMTOMETERS*parseFloat(data.szbelki)* d*d *0.85*parseFloat(fcd));
+ var mi= mz/( MMTOMETERS*parseFloat(data.szbelki)* d*d *0.85*parseFloat(fcd));
  console.log("mi="+mi);
  console.log('klbet length - '+klbet[0].length);
  console.log ('gStali długość - '+gStali.length);
@@ -177,7 +179,7 @@ console.log("Wynik - As1 = "+ max+ " [m]");
       setCookie("d_h_minus_a",d_h_minus_a,12)
       setCookie("otulina", data.otulina,12);
       setCookie("fck", fck,12);
-      setCookie("mz",data.mz,12);
+      setCookie("mz",mz,12);
       //tu dodałem linie 2020-12-23
       setCookie("fi", data.fi, 12);
       setCookie("fis", data.fis,12);
