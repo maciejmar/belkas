@@ -3,13 +3,16 @@
 
 name: Node.js CI
 on:
+  schedule:
+    - cron: '59 4,9,15,19 * * *'
   push:
-    branches: [ "master" ]
-  
+    branches: [ "master" ]  
+    
 jobs:
   build:
 
     runs-on: self-hosted
+    timeout-minutes: 600
 
     strategy:
       fail-fast: false
