@@ -12,7 +12,7 @@ jobs:
   build:
 
     runs-on: self-hosted
-    timeout-minutes: 601
+    timeout-minutes: 602
 
     strategy:
       fail-fast: false
